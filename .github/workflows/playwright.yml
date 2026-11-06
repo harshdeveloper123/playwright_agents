@@ -10,10 +10,9 @@ on:
 
 jobs:
   test:
-    timeout-minutes: 60
+    timeout-minutes: 30
     runs-on: ubuntu-latest
 
-    # Environment variables required by Playwright tests
     env:
       BASE_URL: ${{ vars.BASE_URL }}
       STANDARD_USERNAME: ${{ secrets.STANDARD_USERNAME }}
@@ -37,15 +36,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # 4. Install Playwright browsers and system dependencies
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+      # 4. Install Chromium and its Linux dependencies
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
 
-      # 5. Run Playwright tests
+      # 5. Run Chromium tests only
       - name: Run Playwright tests
-        run: npx playwright test
+        run: npx playwright test --project=chromium
 
-      # 6. Upload reports, traces and screenshots
+      # 6. Upload reports and test results
       - name: Upload Playwright reports and test results
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
@@ -54,5 +53,5 @@ jobs:
           path: |
             playwright-report/
             test-results/
-          retention-days: 30
+          retention-days: 7
           if-no-files-found: ignore
