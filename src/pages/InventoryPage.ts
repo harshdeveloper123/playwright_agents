@@ -50,6 +50,24 @@ export class InventoryPage {
     }));
   }
 
+  async getProductPriceText(name: string): Promise<string> {
+    const item = this.locators.productItemByName(name);
+    return this.locators.productPrice(item).innerText();
+  }
+
+  async getProductImageSource(name: string): Promise<string> {
+    const item = this.locators.productItemByName(name);
+    const source = await this.locators.productImage(item).getAttribute('src');
+    if (source === null) {
+      throw new Error(`Product image source is missing for "${name}"`);
+    }
+    return source;
+  }
+
+  async openProduct(name: string): Promise<void> {
+    await this.locators.productName(this.locators.productItemByName(name)).click();
+  }
+
   async addProductToCart(name: string): Promise<void> {
     await this.locators.addToCartButton(this.locators.productItemByName(name)).click();
   }

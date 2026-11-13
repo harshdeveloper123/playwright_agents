@@ -8,7 +8,7 @@ export class LoginLocators {
   }
 
   get password(): Locator {
-    return this.page.getByPlaceholder('Password');
+    return this.page.getByRole('textbox', { name: 'Password' });
   }
 
   get submitButton(): Locator {

@@ -34,7 +34,7 @@ async function continueWithValidInformation(checkoutPage: CheckoutPage): Promise
 test.describe('SauceDemo checkout', () => {
   test.beforeEach(async ({ page }) => {
     const inventoryPage = new InventoryPage(page);
-    await page.goto('/inventory.html');
+    await page.goto('/inventory.html', { waitUntil: 'domcontentloaded' });
     await expect(inventoryPage.locators.heading).toBeVisible();
   });
 
