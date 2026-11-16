@@ -68,6 +68,10 @@ export class InventoryPage {
     await this.locators.productName(this.locators.productItemByName(name)).click();
   }
 
+  async openProductByImage(name: string): Promise<void> {
+    await this.locators.productImage(this.locators.productItemByName(name)).click();
+  }
+
   async addProductToCart(name: string): Promise<void> {
     await this.locators.addToCartButton(this.locators.productItemByName(name)).click();
   }

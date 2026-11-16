@@ -3,9 +3,8 @@ import type { Locator, Page } from '@playwright/test';
 export class ProductDetailsLocators {
   constructor(private readonly page: Page) {}
 
-  private get detailsContainer(): Locator {
-    // The details section has no accessible container; scope these controls away from inventory cards.
-    return this.page.locator('.inventory_details_desc_container');
+  productImage(name: string): Locator {
+    return this.page.getByRole('img', { name, exact: true });
   }
 
   productName(name: string): Locator {
@@ -17,22 +16,18 @@ export class ProductDetailsLocators {
   }
 
   productPrice(price: string): Locator {
-    return this.detailsContainer.getByText(price, { exact: true });
-  }
-
-  productImage(name: string): Locator {
-    return this.page.getByRole('img', { name, exact: true });
+    return this.page.getByText(price, { exact: true });
   }
 
   get addToCartButton(): Locator {
-    return this.detailsContainer.getByRole('button', { name: 'Add to cart', exact: true });
+    return this.page.getByRole('button', { name: 'Add to cart', exact: true });
   }
 
   get removeButton(): Locator {
     return this.page.getByRole('button', { name: 'Remove', exact: true });
   }
 
-  get backToInventoryButton(): Locator {
+  get backToProductsButton(): Locator {
     return this.page.getByRole('button', { name: 'Back to products', exact: true });
   }
 }

@@ -11,15 +11,19 @@ Read and understand the feature requirement or user story supplied in the reques
 
 ## Feature Analysis
 
+- Analyze the user story and requirements first. Use the configured Playwright MCP server to explore the actual application when needed to clarify relevant behavior.
+- Use available MCP browser tools to launch or access the application, navigate relevant pages and workflows, interact with UI elements, inspect DOM structure, accessibility information, attributes, labels, and visible content, and capture screenshots when useful. Other available MCP tools may be used when they support requirement analysis.
 - Understand the feature's purpose and expected functionality.
 - Identify important user workflows and business rules relevant to the feature.
-- Inspect relevant existing project files and `AGENTS.md` to understand the feature implementation and available testing context.
-- Identify happy paths, negative scenarios, validation cases, boundary conditions, and relevant edge cases.
-- Do not assume functionality that is not supported by the requirements or repository evidence.
+- Inspect relevant existing project files and `AGENTS.md` to understand the feature implementation and available testing context. Consider application observations alongside repository evidence and the provided requirements.
+- Verify relevant workflows, business rules, validations, and UI behavior through browser exploration where possible. Identify relevant implemented functionality not explicitly covered by the story.
+- Clearly distinguish confirmed application behavior, requirement-based expectations, and unverified assumptions. If observed behavior contradicts a requirement, highlight the discrepancy rather than silently changing the expected result.
+- Identify happy paths, negative scenarios, validation cases, boundary conditions, and relevant edge cases supported by the requirements and verified application behavior. Do not create scenarios for unrelated functionality.
+- Do not assume or invent functionality or expected results. Clearly note behavior that cannot be verified.
 
 ## Test Scenario Creation
 
-Create independent test scenarios covering the identified feature behaviour.
+Create independent test scenarios based on the requirement details and verified application behavior, covering the identified feature behaviour.
 
 For each scenario, include:
 
@@ -42,7 +46,7 @@ Ensure Test IDs are unique within the plan and remain unchanged when the test pl
 
 ## Test Plan Output
 
-Create the feature's Markdown test plan under `specs/`, following the existing project file naming convention.
+Create or update the feature's Markdown test plan under `specs/`, following the existing project file naming convention. Include screenshots or references to browser observations only when they provide useful evidence; do not unnecessarily embed screenshots.
 
 Include all relevant scenarios, their Test IDs, preconditions, test data, steps, and expected results.
 
