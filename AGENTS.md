@@ -69,3 +69,35 @@ Before generating or modifying tests:
 - Use MCP browser interaction for exploration and inspection; use Playwright Test execution tools or terminal commands to run and validate automated tests. Choose tools appropriate to the task.
 - Use MCP when it adds value and avoid unnecessary browser interactions. Do not modify application data, perform destructive actions, or submit irreversible operations unless explicitly required by the testing task.
 - State assumptions honestly. Do not claim tests, browser behavior, or fixes were verified unless the available output confirms it.
+
+
+
+## Test Categorization Guidelines
+
+### Available Test Tags
+
+Use the following Playwright tags to categorize automated test cases:
+
+- `@smoke`: Use for critical application functionalities that must work in every new build.
+- `@sanity`: Use for focused validation of specific changes or bug fixes.
+- `@regression`: Use for existing functionalities that need verification after code changes.
+- `@e2e`: Use for complete end-to-end business workflows involving multiple application modules.
+
+### Tagging Rules
+
+1. Assign tags based on the actual objective and scope of each test case.
+2. A test case can have multiple tags when applicable.
+3. Do not assign every available tag to every test case.
+4. Use `@smoke` only for critical business functionalities.
+5. Use `@sanity` only when validating a specific change or bug fix.
+6. Use `@regression` for existing functionality that should be checked after application changes.
+7. Use `@e2e` for complete business workflows from beginning to end.
+8. Do not create separate test files just for different testing categories.
+9. Add tags directly to Playwright test declarations.
+10. Preserve existing test logic, POM structure, fixtures, and framework conventions when adding tags.
+
+### Agent Responsibilities
+
+- Planner: Recommend appropriate testing categories for each test scenario in the generated test plan.
+- Generator: Apply the recommended tags to the corresponding Playwright test declarations.
+- Do not invent testing categories or assign tags without considering the test objective.

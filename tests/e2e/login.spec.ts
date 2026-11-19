@@ -17,7 +17,7 @@ test.describe('SauceDemo login', () => {
     await new LoginPage(page).navigateToLogin();
   });
 
-  test('signs in with the standard user', async ({ page }) => {
+  test('Standard user signs in successfully @smoke @regression', async ({ page }) => {
     test.skip(
       !standardUsername || !standardPassword,
       'Set STANDARD_USERNAME and STANDARD_PASSWORD in the root .env file.',
@@ -29,7 +29,7 @@ test.describe('SauceDemo login', () => {
     await expect(loginPage.locators.authenticatedMarker).toBeVisible();
   });
 
-  test('rejects invalid credentials', async ({ page }) => {
+  test('Invalid credentials are rejected @regression', async ({ page }) => {
     test.skip(
       !standardUsername || !standardPassword,
       'Set STANDARD_USERNAME and STANDARD_PASSWORD in the root .env file.',
@@ -42,7 +42,7 @@ test.describe('SauceDemo login', () => {
     await expect(loginPage.locators.authenticatedMarker).not.toBeVisible();
   });
 
-  test('rejects the locked-out user', async ({ page }) => {
+  test('Locked-out user is rejected @regression', async ({ page }) => {
     test.skip(
       !lockedUsername || !lockedPassword,
       'Set LOCKED_USERNAME and LOCKED_PASSWORD in the root .env file.',
@@ -55,14 +55,14 @@ test.describe('SauceDemo login', () => {
     await expect(loginPage.locators.authenticatedMarker).not.toBeVisible();
   });
 
-  test('validates both required fields when empty', async ({ page }) => {
+  test('Login validates both required fields when empty @regression', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.submit();
 
     await expectLoginError(loginPage);
   });
 
-  test('validates an empty username', async ({ page }) => {
+  test('Login validates an empty username @regression', async ({ page }) => {
     test.skip(!standardPassword, 'Set STANDARD_PASSWORD in the root .env file.');
 
     const loginPage = new LoginPage(page);
@@ -72,7 +72,7 @@ test.describe('SauceDemo login', () => {
     await expectLoginError(loginPage);
   });
 
-  test('validates an empty password', async ({ page }) => {
+  test('Login validates an empty password @regression', async ({ page }) => {
     test.skip(!standardUsername, 'Set STANDARD_USERNAME in the root .env file.');
 
     const loginPage = new LoginPage(page);
@@ -82,7 +82,7 @@ test.describe('SauceDemo login', () => {
     await expectLoginError(loginPage);
   });
 
-  test('masks the password input', async ({ page }) => {
+  test('Password input masks entered credentials @regression', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.enterPassword('non-sensitive-test-value');
 
