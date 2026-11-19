@@ -81,7 +81,7 @@ export class CheckoutLocators {
   }
 
   get shippingInformation(): Locator {
-    return this.page.getByText(/^Free Pony Express Delivery!?$/);
+    return this.page.getByText('Free Pony Express Delivery!', { exact: true });
   }
 
   get orderConfirmation(): Locator {

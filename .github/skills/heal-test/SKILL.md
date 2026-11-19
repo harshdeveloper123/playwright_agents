@@ -39,7 +39,7 @@ Review:
 
 Understand how the failing scenario interacts with the existing framework.
 
-Do not perform live browser inspection or use MCP.
+When project evidence and the supplied failure output are insufficient to verify the affected UI, navigation, or element behavior, use the configured Playwright MCP server to navigate to the relevant application page, reproduce the interaction, inspect DOM and accessibility information, compare element attributes and visible state, capture screenshots, or use other available MCP tools as needed.
 
 ## 3. Diagnose the Root Cause
 
@@ -97,10 +97,10 @@ Follow root `AGENTS.md` and preserve existing project conventions.
 
 ## 6. Tool and Execution Restrictions
 
-- Use only native Copilot tools and project files.
-- Do not use MCP or connect to MCP servers.
-- Do not perform live browser inspection.
-- Do not run browser automation for inspection.
+- Use project files and existing framework components as primary evidence.
+- Use available Playwright MCP tools for browser navigation, UI inspection, interaction, screenshots, and diagnosis when they help verify the root cause.
+- Avoid unnecessary browser interaction and keep MCP investigation focused on the failing test.
+- MCP browser exploration does not replace the supplied failure output or actual Playwright Test CLI validation.
 - Use Playwright Test CLI execution to validate the correction only when appropriate and permitted.
 - Do not claim that a correction is successful without supporting validation output.
 
