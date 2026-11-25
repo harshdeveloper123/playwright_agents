@@ -172,4 +172,15 @@ test.describe('SauceDemo checkout', () => {
     await expect(cartPage.locators.cartItems).toHaveCount(0);
     await expect(cartPage.locators.cartBadge).toBeHidden();
   });
+
+  test('[CHK-011] Empty cart checkout is rejected @smoke @regression', async ({ page }) => {
+    const cartPage = new CartPage(page);
+    const checkoutPage = new CheckoutPage(page);
+
+    await cartPage.open();
+
+    await expect(cartPage.locators.cartItems).toHaveCount(0);
+    await expect(cartPage.locators.cartBadge).toBeHidden();
+    await expect(checkoutPage.locators.checkoutButton).toBeHidden();
+  });
 });

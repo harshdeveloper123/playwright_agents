@@ -146,6 +146,21 @@ Validate the authenticated user's path from cart to Checkout, required checkout 
 
 **Expected result:** The user returns to Inventory. The completed order's products are no longer in the cart, and no cart item count is displayed.
 
+### CHK-011: Empty Cart Checkout Is Rejected
+
+**Priority:** High  
+**Preconditions:** Fresh Chromium context using the saved authenticated state; the cart is empty and no products have been selected.  
+**Test data:** No product data; empty cart state.
+
+**Test steps:**
+1. Open the cart from the Inventory page.
+2. Verify that the cart is empty and that no cart item count is displayed.
+3. Attempt to start checkout from the cart.
+4. Enter valid First Name, Last Name, and Zip/Postal Code values if the information page is reached.
+5. Select Continue and then Finish if either control remains available.
+
+**Expected result:** Empty-cart checkout is rejected. The user remains on the cart or returns to it, no checkout information or order overview is displayed, and no completion message or order is produced. The test is framed to verify that a zero-product checkout is not allowed.
+
 ## Automation Considerations
 
 - Use the existing Chromium project rather than changing project configuration. The setup dependency creates the authenticated storage state before Chromium tests.
@@ -156,7 +171,7 @@ Validate the authenticated user's path from cart to Checkout, required checkout 
 
 ## Coverage Summary
 
-Covers all ten requested scenarios: entering Checkout, each required-field validation error, continuing with complete information, verifying selected products and quantities, validating totals and demo payment/shipping details, canceling back to the cart, completing an order with the exact `Thank you for your order!` message, and returning home with the cart cleared. The plan targets Chromium and reuses the saved authenticated state.
+Covers all eleven requested scenarios: entering Checkout, each required-field validation error, continuing with complete information, verifying selected products and quantities, validating totals and demo payment/shipping details, canceling back to the cart, completing an order with the exact `Thank you for your order!` message, returning home with the cart cleared, and rejecting checkout when the cart is empty. The plan targets Chromium and reuses the saved authenticated state.
 
 ## Assumptions
 
