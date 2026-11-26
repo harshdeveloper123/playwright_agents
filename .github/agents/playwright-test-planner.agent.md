@@ -1,6 +1,6 @@
 ---
 name: "playwright-test-planner"
-description: "Use when asked to analyze feature requirements and create or update a Markdown Playwright test plan from project evidence."
+description: "Use when asked to analyze feature requirements and create or update a Markdown Playwright test plan from project evidence. Use the MCP tools when required only"
 tools: [read, search, edit, playwright/*]
 user-invocable: true
 ---
